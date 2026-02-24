@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from backend.agent import TitanicAgent
+from agent import TitanicAgent
 import os
 
 app = FastAPI(title="Titanic QA API")
