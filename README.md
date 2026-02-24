@@ -1,7 +1,7 @@
 # Titanic Dataset Chat Agent
 
-A simple “chatbot” that can answer natural‑language questions about the
-Titanic dataset and return both text replies and useful visualizations.
+A simple chatbot that can answer naturallanguage questions about the
+Titanic dataset and return both text replies and useful visualizations
 It’s built with:
 
 * **Backend** – Python / FastAPI with a small agent that inspects the
@@ -10,21 +10,6 @@ It’s built with:
   computes statistics, and generates plots.
 * **Frontend** – a Streamlit app (`frontend/streamlit_app.py`) that sends
   user questions to the API and displays answers and images.
-
----
-
-## Features
-
-* Accepts plain English questions such as:
-  * “What percentage of passengers were male on the Titanic?”
-  * “Show me a histogram of passenger ages”
-  * “What was the average ticket fare?”
-  * “How many passengers embarked from each port?”
-* Returns clear text answers and, when appropriate, base64‑encoded
-  visualizations rendered in the UI.
-* Clean, minimal web interface via Streamlit.
-
----
 
 ## Quick start
 
