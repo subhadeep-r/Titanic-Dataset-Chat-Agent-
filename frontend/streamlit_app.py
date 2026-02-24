@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import requests
 import base64
@@ -6,7 +7,10 @@ st.set_page_config(page_title="Titanic Chatbot", layout="centered")
 st.title("Titanic Dataset Chatbot")
 st.markdown("Ask questions in plain English about the Titanic dataset and get text answers plus visualizations.")
 
-backend_url = st.text_input("Backend URL", value="http://localhost:8000")
+backend_url = os.getenv("BACKEND_URL")
+if not backend_url:
+    st.error("Backend URL is not configured. Set the `BACKEND_URL` environment variable.")
+    st.stop()
 
 question = st.text_input("Your question", value="What percentage of passengers were male on the Titanic?")
 if st.button("Ask"):

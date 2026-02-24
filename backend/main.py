@@ -1,9 +1,28 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from backend.agent import TitanicAgent
+import os
 
 app = FastAPI(title="Titanic QA API")
 agent = TitanicAgent()
+
+# Configure CORS so a deployed Streamlit frontend (or any other web UI)
+# can call this API from a browser. In production you should restrict
+# `allow_origins` to the real frontend host(s).
+allowed = os.getenv("ALLOWED_ORIGINS")
+if allowed:
+    origins = [o.strip() for o in allowed.split(",") if o.strip()]
+else:
+    origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class AskRequest(BaseModel):

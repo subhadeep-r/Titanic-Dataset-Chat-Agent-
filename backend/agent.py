@@ -1,6 +1,9 @@
 from typing import Optional, Tuple, Dict
 import pandas as pd
 import seaborn as sns
+import matplotlib
+# Use non-interactive backend for environments without a display (tests, CI)
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import io
 import base64

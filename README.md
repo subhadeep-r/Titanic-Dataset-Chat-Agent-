@@ -87,9 +87,21 @@ Testing and CI
   on push/PR (see `.github/workflows/ci.yml`).
 
 Notes on deployment
-- If you deploy Streamlit separately from the API, set the frontend's
-  `BACKEND_URL` environment variable to your backend's public URL and
-  set `ALLOWED_ORIGINS` on the API for CORS.
+
+Frontend on Streamlit Cloud
+1. Push your code to GitHub.
+2. Go to [Streamlit Cloud](https://streamlit.io/cloud) and connect your repo.
+3. In the deployment settings, set the environment variable:
+   - `BACKEND_URL=https://your-backend-url.com` (e.g., from Render or Azure)
+4. Click Deploy. The frontend will use this backend URL automatically.
+
+Backend on Render or Azure
+1. Deploy `backend/main.py` as a web service:
+   - Set the startup command to: `python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000`
+   - Or use the provided `Dockerfile` if available.
+2. Get the public URL of your deployed API (e.g., `https://titanic-api-xyz.onrender.com`).
+3. In Streamlit Cloud settings, set `BACKEND_URL` to that URL.
+4. Optionally, set `ALLOWED_ORIGINS` on the backend to restrict CORS to your Streamlit Cloud domain for security.
 
 License
 - Consider adding an MIT license if you plan to share this publicly.
