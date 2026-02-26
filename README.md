@@ -39,6 +39,10 @@ python -m venv .venv
 
 ```powershell
 pip install --upgrade pip
+# use the combined requirements for local development,
+# or install only backend/frontend deps as needed:
+#   pip install -r requirements-backend.txt
+#   pip install -r requirements-frontend.txt
 pip install -r requirements.txt
 ```
 
@@ -87,6 +91,13 @@ Testing and CI
   on push/PR (see `.github/workflows/ci.yml`).
 
 Notes on deployment
+
+A few configuration reminders:
+* The frontend reads `BACKEND_URL` at start-up and falls back to
+  `http://localhost:8000` for local development. Set the environment
+  variable in any cloud host so the UI points at your live API.
+* The backend enables CORS for all origins by default; you can
+  restrict this with `ALLOWED_ORIGINS` (comma-separated) if desired.
 
 Frontend on Streamlit Cloud
 1. Push your code to GitHub.
